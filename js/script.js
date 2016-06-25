@@ -1,6 +1,6 @@
 // https://api.forecast.io/forecast/5d41ee0cbd7a3b80aa33249f7c988fdd/LATITUDE,LONGITUDE
 
-var containerNode = document.querySelector('#container')
+var containerNode = $('#container')
 var buttonNodes = document.querySelector('#buttons')
 
 var addEventListeners = function(lat, lng) {
@@ -10,8 +10,6 @@ var addEventListeners = function(lat, lng) {
   	var viewType = e.target.value
 
     location.hash = lat + '/' + lng + '/' + viewType
-
-    console.log("This is the viewType: " + viewType)
   }
 
 	buttonNodes.addEventListener('click', switchViewType)
@@ -82,8 +80,8 @@ var WeatherRouter = Backbone.Router.extend({
   	  promise_result = superModel.fetch()
 
   	  promise_result.then(function(res){
-  	  	console.log(res)
-		    containerNode.innerHTML = "<h1>The current weather in summary for " + lat + lng + ": " + res.currently.summary + "</h1>"
+		    containerNode.html("<h1>The current weather for: " + lat + ", " + lng + "" + "<br /><br />" + res.currently.summary + "</h1>")
+        containerNode.append("<br /> <h1>" + res.currently.temperature + " &deg;F </h1>")
   	  }).catch(function(anError){
   	  	console.log(anError)
   	  })
@@ -96,7 +94,8 @@ var WeatherRouter = Backbone.Router.extend({
   	  promise_result = superModel.fetch()
 
   	  promise_result.then(function(res){
-		    containerNode.innerHTML = "<h1>Daily weather for " + lat + ',' + lng + ": " + res.daily.summary + "</h1>"
+		    containerNode.html("<h1>The daily weather for: " + lat + ", " + lng + "" + "<br /><br />" + res.daily.summary + "</h1>")
+        containerNode.append("<br /> <h1>" + res.currently.temperature + " &deg;F </h1>")
   	  }).catch(function(anError){
   	  	console.log(anError)
   	  })
@@ -109,7 +108,8 @@ var WeatherRouter = Backbone.Router.extend({
   	  promise_result = superModel.fetch()
 
   	  promise_result.then(function(res){
-		    containerNode.innerHTML = "<h1>Hourly weather for " + lat + ',' + lng + ": " + res.hourly.summary + "</h1>"
+		    containerNode.html("<h1>The hourly weather for: " + lat + ", " + lng + "" + "<br /><br />" + res.hourly.summary + "</h1>")
+        containerNode.append("<br /> <h1>" + res.currently.temperature + " &deg;F </h1>")
   	  }).catch(function(anError){
   	  	console.log(anError)
   	  })

@@ -1,5 +1,8 @@
 body {
 	background: #fff;
+	background-image: url(https://static.pexels.com/photos/6566/sea-sky-clouds-weather-large.jpg);
+	background-repeat: repeat-y;
+	background-size: cover;
 }
 
 p {
@@ -39,7 +42,9 @@ p {
 }
 
 #buttons button {
-	background: pink;
+	background: #3498db;
+	border-radius: 10px;
+	opacity: .8;
 	width: 127px;
 	color: #333;
 	margin: 100px 10px 0 10px;
