@@ -76,8 +76,9 @@ var WeatherRouter = Backbone.Router.extend({
   handleCurrentWeather: function(lat, lng) {
   		addEventListeners(lat, lng)
   		var superModel = new WeatherModel()
+      var options = { crossDomain: true }
 
-  	  promise_result = superModel.fetch()
+  	  promise_result = superModel.fetch(options)
 
   	  promise_result.then(function(res){
 		    containerNode.html("<h1>The current weather for: " + lat + ", " + lng + "" + "<br /><br />" + res.currently.summary + "</h1>")
