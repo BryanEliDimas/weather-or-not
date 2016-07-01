@@ -76,7 +76,7 @@ var WeatherRouter = Backbone.Router.extend({
   handleCurrentWeather: function(lat, lng) {
   		addEventListeners(lat, lng)
   		var superModel = new WeatherModel()
-      var options = { crossDomain: true }
+      var options = { crossDomain: true, dataType: 'jsonp' }
 
   	  promise_result = superModel.fetch(options)
 
@@ -89,10 +89,12 @@ var WeatherRouter = Backbone.Router.extend({
   },
 
   handleDailyWeather: function(lat, lng) {
-  		addEventListeners(lat, lng)
+      var options = { crossDomain: true, dataType: 'jsonp' }
+
+      addEventListeners(lat, lng)
   		var superModel = new WeatherModel()
 
-  	  promise_result = superModel.fetch()
+  	  promise_result = superModel.fetch(options)
 
   	  promise_result.then(function(res){
 		    containerNode.html("<h1>The daily weather for: " + lat + ", " + lng + "" + "<br /><br />" + res.daily.summary + "</h1>")
@@ -103,10 +105,12 @@ var WeatherRouter = Backbone.Router.extend({
   },
 
   handleHourlyWeather: function(lat, lng) {
+      var options = { crossDomain: true, dataType: 'jsonp' }
+
   		addEventListeners(lat, lng)
   		var superModel = new WeatherModel()
 
-  	  promise_result = superModel.fetch()
+  	  promise_result = superModel.fetch(options)
 
   	  promise_result.then(function(res){
 		    containerNode.html("<h1>The hourly weather for: " + lat + ", " + lng + "" + "<br /><br />" + res.hourly.summary + "</h1>")
